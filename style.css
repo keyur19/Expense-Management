@@ -1,0 +1,33 @@
+.about{
+    background-color: rgb(247, 250, 253);
+}
+
+.navbar-nav li{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: large;
+    color: #fff !important;
+}
+.navstyle{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #e2dadb !important;
+}
+.heading{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    background-color: #284b63 !important;
+    color: #f4f9e9 !important;
+    font-size: xx-large;
+}
+
+.cardtext{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #153243 !important;
+}
+.card{
+    background-color: rgb(217, 234, 249);
+}
