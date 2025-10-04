@@ -69,14 +69,18 @@ def admin_signup():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
-        password = request.form['password'] 
+        password = request.form['password']
+        country = request.form['country']
+        currency = request.form['currency']
         role = "Admin"
 
         conn = mysql.connector.connect(**db_config)
         c = conn.cursor()
         try:
-            c.execute("INSERT INTO users (name, email, password, role) VALUES (%s, %s, %s, %s)",
-                      (name, email, password, role))
+            c.execute(
+                "INSERT INTO users (name, email, password, role, country, currency) VALUES (%s, %s, %s, %s, %s, %s)",
+                (name, email, password, role, country, currency)
+            )
             conn.commit()
             flash("Admin created successfully!", "success")
             return redirect(url_for('admin_login'))
@@ -84,7 +88,7 @@ def admin_signup():
             flash("Email already exists!", "danger")
         finally:
             conn.close()
-    return render_template('admin_signup.html')
+    return render_template('admin_signup.html', countries=countries)
 
 # Admin Login
 @app.route('/admin_login', methods=['GET', 'POST'])

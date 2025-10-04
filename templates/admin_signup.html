@@ -38,10 +38,49 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" name="password" class="form-control" required>
       </div>
+
+      
+<div class="mb-3">
+  <label for="country" class="form-label">Country</label>
+  <select name="country" id="country-select" class="form-control" onchange="updateCurrency()" required>
+    {% for c in countries %}
+      <option value="{{ c.country }}">{{ c.country }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="currency" class="form-label">Currency</label>
+  <select name="currency" id="currency-select" class="form-control" required>
+    <!-- Options will be populated by JS -->
+  </select>
+</div>
       <button type="submit" class="btn btn-primary w-100">Signup</button>
       <p class="mt-2 text-center">Already have an account? <a href="{{ url_for('admin_login') }}">Login</a></p>
     </form>
   </div>
 </div>
+
+
+
+<script>
+  const countries = {{ countries | tojson }};
+  function updateCurrency() {
+      const selectedCountry = document.getElementById('country-select').value;
+      const currencySelect = document.getElementById('currency-select');
+      currencySelect.innerHTML = '';
+      const countryCurrencies = countries.filter(c => c.country === selectedCountry)
+                                       .map(c => c.currency);
+      countryCurrencies.forEach(c => {
+          const option = document.createElement('option');
+          option.value = c;
+          option.text = c;
+          currencySelect.appendChild(option);
+      });
+  }
+  // Initialize currency dropdown
+  updateCurrency();
+</script>
+
 </body>
 </html>
